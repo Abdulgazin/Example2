@@ -1,0 +1,37 @@
+package Example2;
+import java.util.ArrayList;
+
+public class Students {
+    int age;
+    String name;
+
+    Students(int age, String name) {
+        this.age = age;
+        this.name = name;
+    }
+
+    public static void main(String[] args) {
+        Students s1 = new Students(20, "Павел");
+        Students s2 = new Students(25, "Олег");
+        Students s3 = new Students(30, "Егор");
+        Students s4 = new Students(35, "Владимир");
+        Students s5 = new Students(40, "Михаил");
+
+        ArrayList<Students> arr = new ArrayList<>();
+        arr.add(s1);
+        arr.add(s2);
+        arr.add(s3);
+        arr.add(s4);
+        arr.add(s5);
+
+        for (Students s : arr) {
+            System.out.println(s.name);
+            if (s.name.length() > 4) {
+                s.age += 4;
+            }
+        }
+        for (Students s : arr) {
+            System.out.println(s.age);
+        }
+    }
+}
