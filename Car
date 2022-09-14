@@ -1,0 +1,62 @@
+package Example2;
+import java.util.ArrayList;
+public class Car {
+    String model;
+    Engine engine;
+    void startMove(int km){
+        System.out.println(engine.durability = engine.durability-(km/100));//так ты имел ввиду надо сделать?буду на полях пометки делать тогда
+    //т е этот метод ТОЛЬКО принимает пробег и уменьшает дюрабилити?
+    }
+    int showEngineInfo(Car c){//здесь понял что прописываю кар,подразумевает любой авто
+        return engine.durability;//а уже этот метод принимает обьект энджайн и показывает его дюрабилити?!так??
+    }
+}
+class Service{
+    void repairEngine(Car car){
+        car.engine.durability=100;
+        System.out.println("Состояние двигателя "+(car.engine)+ " восстановлено до "+(car.engine.durability=100));
+        //return car.engine.durability;
+    }
+    void vyborAvto(ArrayList<Car> c){
+          int min=100;
+          for(Car i:c){
+              if(i.engine.durability<min){
+                  min=i.engine.durability;
+              }
+              else
+                  System.out.println("это не минимальное значение");
+          }
+    }
+}
+class Test1{
+    public static void main(String[] args) {
+        Car c=new Car();
+        c.model="лада";
+        c.engine=new Engine();
+        c.startMove(1500);//ага.т е не обязательно строго тысячу км,а просто пропорция что за тысячу 10 а за 1500 уже 15?
+        c.showEngineInfo(c);
+        Car c1=new Car();
+        c1.model="уаз";
+        c1.engine=new Engine();
+        c1.startMove(2500);
+        c1.showEngineInfo(c1);
+        Car c2=new Car();
+        c2.model="нива";
+        c2.engine=new Engine();
+        c2.startMove(4500);
+        c2.showEngineInfo(c2);
+        ArrayList<Car>carArrayList=new ArrayList<>();
+        carArrayList.add(c);
+        carArrayList.add(c);
+        carArrayList.add(c);
+        Service s=new Service();
+        s.vyborAvto(carArrayList);
+        s.repairEngine(c);
+        s.repairEngine(c1);
+        s.repairEngine(c2);
+//        for(String a:arr){//но не могу применить метод чтобы отображалось дюрабилити каждого из двигателей.
+//            System.out.println(arr);
+//        }
+        System.out.println();
+    }
+}
