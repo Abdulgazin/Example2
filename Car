@@ -1,14 +1,12 @@
 package Example2;
-
 public class Car {
     String model;
     Engine engine;
     void startMove(int km){
-        System.out.println(engine.durability -=(km/100));//так ты имел ввиду надо сделать?буду на полях пометки делать тогда
-    //т е этот метод ТОЛЬКО принимает пробег и уменьшает дюрабилити?
+        System.out.println(engine.durability -=(km/100));
     }
-    void showEngineInfo(){//здесь понял что прописываю кар,подразумевает любой авто
-        System.out.println("состояние двигателя авто составляет " + engine.durability);//return engine.durability;//а уже этот метод принимает обьект энджайн и показывает его дюрабилити?!так??
+    void showEngineInfo(){
+        System.out.println("состояние двигателя авто составляет " + engine.durability);
     }
 }
 class Service{
@@ -16,40 +14,45 @@ class Service{
         car.engine.durability=100;
         System.out.println("Состояние двигателя "+(car.engine)+ " восстановлено до "+(car.engine.durability=100));
     }
-    Car vyborAvto(Car[]car) {
-        Engine minimum = car.get(0).engine;//здесь пока не понял как с логикой разобраться
-        for (int i = 0; i < car.length; i++) {
-            System.out.println(car[i]);
+    Engine vyborAvto(Car[]car) {
+        int min=100;//car.get(0).engine не пишу т к идея выдает на это ошибку.
+        for (Car i : car) {
+            if (i.engine.durability < min) {
+                min = i.engine.durability;
+            }
+            else
+                System.out.println("это не минимум");
         }
-        return null;
+        return ;//что сюда поставить на возврат уме не приложу
     }
 }
 class Test1{
     public static void main(String[] args) {
         Car c=new Car();
         c.model="лада";
-        c.engine=new Engine();
+        Engine e=new Engine();
+        e.durability=100;
+        c.engine=e;
         c.startMove(1500);//ага.т е не обязательно строго тысячу км,а просто пропорция что за тысячу 10 а за 1500 уже 15?
         c.showEngineInfo();
         Car c1=new Car();
         c1.model="уаз";
-        c1.engine=new Engine();
+        Engine e1=new Engine();
+        c1.engine=e1;
         c1.startMove(2500);
         c1.showEngineInfo();
         Car c2=new Car();
         c2.model="нива";
-        c2.engine=new Engine();
+        Engine e2=new Engine();
+        c2.engine=e2;
         c2.startMove(4500);
         c2.showEngineInfo();
         Car[]car=new Car[3];
         car[0]=c;
         car[1]=c1;
         car[2]=c2;
-//        for(Car i:car){
-//            System.out.println(car);
-//        }
         Service s=new Service();
         s.vyborAvto(car);
-        System.out.println();
-    }
+        System.out.println(s.vyborAvto(car));
+        }
 }
